@@ -1,0 +1,23 @@
+{
+    "0-20": " Sada \u0107emo govoriti o spektrografnom particijalnosti. Spravit \u0107emo diskusiju o spektrografnom particijalnosti u dvije dele. Prvo \u0107emo govoriti o problemu, kod kojeg \u0107emo razmi\u0161ljati matri\u010dinu Laplacija, a sada u drugoj deli \u0107emo govoriti o tom kako raditi particijalnost. Zna\u010di, prije toga razmi\u0161ljajmo \u0161to je na\u0161 cilj i \u0161to \u017eelimo raditi.",
+    "20-40": " \u0160to \u017eelimo raditi? \u017delimo razmi\u0161ljati klustre ili komunitete u netvorkama. Sada \u0107emo razmi\u0161ljati klustre u dvije dele. Sada \u0107emo razmi\u0161ljati klustre u dvije dele u tako jezicu da su svi dvije dele imali mnogo konekcija me\u0111u jednim delom i nekoliko konekcija koji se razmi\u0161ljaju u dvije dele.",
+    "40-60": " Ovdje vam dajem na\u010din tog, u kojem vam pokazujem na\u010din nekog netvora s dvije klustre i malom sezonom konekcija koji se razmi\u0161ljaju u dvije klustre i samo izgled samoh dana, ali sada izgled sezonne konekcije. Ovo je sada na pravom stranu zvano zadanim sezonom konekcija, u kojem sezone i kolumne ove konekcije",
+    "60-80": " razmi\u0161ljaju koneke. A zato je uvijek ij i j sada uvijek uvijek uvijek uvijek uvijek uvijek. A ako je uvijek uvijek uvijek, zna\u010di da se jedan konekciju i sve zanima jednom konekcijom j i ako je uvijek ovdje ispun, zna\u010di da se koneke ne zanima s svojim drugim. I u predstavljanju konekcija",
+    "80-100": " vidimo da je ovaj konekcijski matri\u010d mo\u017eda povr\u0111eno u tako vremeno da imamo dva konekcija u kojem su mnogo konekcije me\u0111u mjestom konekcija. Ovdje je jo\u0161 jedan, mnogo konekcija i zato je mnogo konekcija me\u0111u dva konekcija u ovdjezadnim delima. Zna\u010di, sada je vjerovatno kako se identificiramo takvu strukturu, kako se razvijemo grafom u dva stvara.",
+    "100-120": " Odmah \u0107emo misliti o tome da \u0107emo razvijesti graf u dva stvara tako da se rezultate stvare imaju lo\u0161u konduktaciju. U\u010dinili smo u\u010dinjenu no\u0107u konduktacije koju je intuitivno mo\u017eda mo\u017eda kao za jednu stvar konekcija. Htjelo nam biti pitanje koliko konekcija su povr\u0111ene u ovom stvaru konekcija",
+    "120-140": " i koliko konekcija su u ovom stvaru konekcija. Zna\u010di, u ovom slu\u010daju jedna dobra bisekcija grafa bi bila stvarna strana ovdje. Zna\u010di, sada je pitanje kako \u0107emo uop\u0107e na\u0107i takvu dobra particiju. Zna\u010di, da vam dajem graf i vas pitam kakva je najbolja particija grafa u dva stvara",
+    "140-160": " tako da konduktacija svega stvara je najmi\u0161ljaka mogu\u0107e to zna\u010di da na\u0107emo dobra komunitije ili dobra klustre. Zna\u010di, u\u010dinili smo no\u0107u grafovog konekcija. Zna\u010di, re\u0107i smo da \u0107emo denovirati A kao konekcija grafovog konekcija i ovaj konekcij A \u0107emo re\u0107i da \u0107e biti",
+    "160-180": " binarna matri\u010dka s ciljima mo\u017eda 0 ili 1 kada cilj 1 zna\u010di da je jedan kod no\u0107i I i J konekcija i cilj 0 zna\u010di da ne su konekcije. To je prvi stvar koji \u0107emo razmi\u0161ljati. Drugi stvar koju \u0107emo razmi\u0161ljati je zna\u010daj vektora X. Zna\u010di, razmi\u0161ljajte vektor X kao ve\u010der",
+    "180-200": " ve\u010dera stvara\u010da cilja vektora je stvarno samo kao",
+    "200-220": " Pitanje je \u0161to se doga\u0111a kada imam ve\u010deru i razmi\u0161ljam",
+    "220-240": " s na\u0161im vektorom. Zna\u010di ovdje imam na\u0161u ve\u010deru A imam na\u0161 vektor X i imajte da je A razmi\u0161ljajte X je Y. Pitanje je kako moram misliti o ve\u010deru i cilju ve\u010dera s ve\u010derom s ve\u010derom s ve\u010derom zna\u010di jako jednostavno idem za svu cilju razmi\u0161ljam s vektorom X",
+    "240-260": " Zna\u010di, ve\u010der je samo produkt za sve kolumne A u kjer imam i i i i i i i i i i i i i i i i",
+    "260-280": " i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i",
+    "280-300": "",
+    "300-320": "",
+    "320-340": " i i",
+    "340-360": " i i i i i i i i i i i i i i i i i i i i i i",
+    "360-380": " So now So now spectral graph theory What do we define as spec? what do we define as spec? Is simply",
+    "380-400": " by their magnitude by their magnitude and its corresponding If I have our graph. I compute the eigenvectors and eigenvalues matrix as lambdas eigenvectors as axes the question is what do these eigenvectors and eigenvalues what do they tell me about the graph?",
+    "400-420": " So let's now start thinking about what do eigenvectors and the corresponding eigenvalues what do they tell us about the graph?"
+}

@@ -7,7 +7,7 @@ import os
 
 
 #  TO BE CHANGED LATER
-os.environ["OPENAI_API_KEY"] = "you-openapi-key"
+# os.environ["OPENAI_API_KEY"] = "you-openapi-key"
 if os.getenv("OPENAI_API_KEY") is not None:
     openai.api_key = os.getenv("OPENAI_API_KEY")
 else:
