@@ -8,16 +8,17 @@ from openai import OpenAI
 def generate_response(query):
     # hugging face embedding function
     huggingface_ef = embedding_functions.HuggingFaceEmbeddingFunction(
-        api_key="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",
+        api_key="your-hugging_faceapi",
         model_name="sentence-transformers/all-MiniLM-L6-v2"
     )
     # openai ebedding function
-    # set apikey
-    os.environ["OPENAI_API_KEY"] = "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"
+    # set api
+    os.environ["OPENAI_API_KEY"] = "sk-your openai_api"
     if os.getenv("OPENAI_API_KEY") is not None:
         openai.api_key = os.getenv("OPENAI_API_KEY")
     else:
         print("OPENAI_API_KEY environment variable not found")
+
     openai_ef = embedding_functions.OpenAIEmbeddingFunction(
         api_key=os.environ.get('OPENAI_API_KEY'),
         model_name="text-embedding-3-small"
@@ -27,11 +28,13 @@ def generate_response(query):
     client = OpenAI()
     # getting chroma_db
     chroma_client = chromadb.PersistentClient(
-        path="chroma_embedding_hugging_face")
+        path="../chromadb/DSCI553")
     # accessing collection
+    # print(chroma_client.list_collections())
     collection = chroma_client.get_collection(
         "embeddings_collection", embedding_function=huggingface_ef)
     # query based on collection
+    # print(query)
     results = collection.query(
         query_texts=query, n_results=5, include=['documents'])
 
@@ -42,8 +45,7 @@ def generate_response(query):
         model="gpt-4",
         max_tokens=400,
         messages=[
-            {"role": "system", "content": "How may I help you with ADS Cookbook?"},
+            {"role": "system", "content": "How may I help you?"},
             {"role": "user", "content": context}
         ])
     return response.choices[0].message.content
-
