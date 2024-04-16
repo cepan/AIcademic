@@ -4,19 +4,8 @@ import openai
 import chromadb
 from chromadb.utils import embedding_functions
 import os
-
-
-#  TO BE CHANGED LATER
-# os.environ["OPENAI_API_KEY"] = "you-openapi-key"
-if os.getenv("OPENAI_API_KEY") is not None:
-    openai.api_key = os.getenv("OPENAI_API_KEY")
-else:
-    print("OPENAI_API_KEY environment variable not found")
-openai_ef = embedding_functions.OpenAIEmbeddingFunction(
-    api_key=os.environ.get('OPENAI_API_KEY'),
-    model_name="text-embedding-3-small"
-)
-# TO BE CHANGED LATER
+import embedding_post
+import response_post
 
 
 DATABASE_URI = 'mysql+mysqlconnector://root:130136569shawN??0716@localhost/cook'
@@ -27,6 +16,7 @@ st.sidebar.header("Upload PDF")
 # uploaded files should be in current directory
 uploaded_files = st.sidebar.file_uploader(
     "Choose PDF files", accept_multiple_files=True, type='pdf')
+
 
 if 'conversation_history' not in st.session_state:
     st.session_state['conversation_history'] = []
@@ -43,21 +33,12 @@ if uploaded_files:
 # Chat window for new questions
 # st.header("Chat with the bot")
 user_input = st.text_input("Questions")
-client = OpenAI()
 
 if user_input:
-
-    # response_text = response.generate_response(user_input)
-    response = client.chat.completions.create(
-        model="gpt-4",
-        max_tokens=400,
-        messages=[
-            {"role": "user", "content": user_input}
-        ])
-    answer = response.choices[0].message.content
+    response_text = response_post.generate_response(user_input)
 
     st.session_state['conversation_history'].insert(0,
-                                                    (user_input, answer))
+                                                    (user_input, response_text))
 
 
 # Display existing conversation history
