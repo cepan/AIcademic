@@ -6,7 +6,7 @@ import os
 import json
 import re
 # Your API key
-api_key = 'google-api-key'
+api_key = 'AIzaSyBl0258Fl6Bw5s9SzXTYzFbJS44LRKvmCM'
 AUDIO_FOLDER = '/Users/shawnpan/Downloads/audio'
 
 
@@ -145,18 +145,19 @@ def get_transcription(video_id, lecture):
     return transcript_divided
 
 
-os.environ["OPENAI_API_KEY"] = "open-api-key"
+os.environ["OPENAI_API_KEY"] = "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"
 client = openai.OpenAI()
 
 
 youtube = build('youtube', 'v3', developerKey=api_key)
 playlist_id = 'PLLssT5z_DsK9JDLcT8T62VtzwyW9LNepV'
 video_ids = get_video_details_from_playlist(youtube, playlist_id)
-lectures = video_ids
-# print(lecutres)
-# exit()
+lectures = video_ids[62:63]
+# print(lectures)
+
 all_video_transcription = []
 for lecture in lectures:
+    # print(lecture['videoId'], lecture['title'])
     get_transcription(lecture['videoId'], lecture['title'])
 
 print("ALL TRANSCIPTIONS RETRIEVED")
