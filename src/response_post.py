@@ -14,7 +14,7 @@ def generate_response(query):
     # )
     # openai ebedding function
     # set api
-    os.environ["OPENAI_API_KEY"] = "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"
+    os.environ["OPENAI_API_KEY"] = ""
     if os.getenv("OPENAI_API_KEY") is not None:
         openai.api_key = os.getenv("OPENAI_API_KEY")
     else:

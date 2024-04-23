@@ -91,9 +91,9 @@ for lecture_folder in sorted(os.listdir(video_dir)):
             {timestamp_key: transcription_data[timestamp_key]})
 
 # Output the lists
-print(f"Image IDs: {image_ids}")
+# print(f"Image IDs: {image_ids}")
 # print(f"Image URIs: {image_uris}")
-# print(f"Transcriptions: {transcriptions})")
+print(f"Transcriptions: {transcriptions})")
 
 
 exit()

@@ -6,7 +6,7 @@ import os
 import json
 import re
 # Your API key
-api_key = 'AIzaSyBl0258Fl6Bw5s9SzXTYzFbJS44LRKvmCM'
+api_key = ''
 AUDIO_FOLDER = '/Users/shawnpan/Downloads/audio'
 
 
@@ -145,7 +145,7 @@ def get_transcription(video_id, lecture):
     return transcript_divided
 
 
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = ""
 client = openai.OpenAI()
 
 
