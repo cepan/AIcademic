@@ -6,7 +6,7 @@ import os
 import json
 import re
 # Your API key
-api_key = ''
+api_key = 'AIzaSyBl0258Fl6Bw5s9SzXTYzFbJS44LRKvmCM'
 AUDIO_FOLDER = '/Users/shawnpan/Downloads/audio'
 
 
@@ -39,6 +39,7 @@ def get_video_details_from_playlist(youtube, playlist_id):
             # Collect video ID and title
             video_details += [{'videoId': item['id'], 'title': item['snippet']['title']}
                               for item in video_response['items']]
+            # video_details += [item['id'] for item in video_response['items']]
 
         next_page_token = pl_response.get('nextPageToken')
 
@@ -145,16 +146,16 @@ def get_transcription(video_id, lecture):
     return transcript_divided
 
 
-os.environ["OPENAI_API_KEY"] = ""
+os.environ["OPENAI_API_KEY"] = "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"
 client = openai.OpenAI()
 
 
 youtube = build('youtube', 'v3', developerKey=api_key)
 playlist_id = 'PLLssT5z_DsK9JDLcT8T62VtzwyW9LNepV'
 video_ids = get_video_details_from_playlist(youtube, playlist_id)
-lectures = video_ids[62:63]
-# print(lectures)
-
+lectures = video_ids
+print(lectures)
+exit()
 all_video_transcription = []
 for lecture in lectures:
     # print(lecture['videoId'], lecture['title'])
