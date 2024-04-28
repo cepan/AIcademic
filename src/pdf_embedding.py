@@ -22,7 +22,7 @@ def pdf_extraction_embedding(file):
         text = pageObj.extract_text()
         text_pdf += text
 
-    os.environ["OPENAI_API_KEY"] = "openai_api_key"
+    os.environ["OPENAI_API_KEY"] = "open_ai_api_key"
     if os.getenv("OPENAI_API_KEY") is not None:
         openai.api_key = os.getenv("OPENAI_API_KEY")
     else:

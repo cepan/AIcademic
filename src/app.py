@@ -10,6 +10,9 @@ st.sidebar.header("Upload PDF")
 uploaded_files = st.sidebar.file_uploader(
     "Choose PDF files", accept_multiple_files=True, type='pdf')
 
+if 'conversation_history' not in st.session_state:
+    st.session_state['conversation_history'] = []
+
 if uploaded_files:
     for uploaded_file in uploaded_files:
         file = uploaded_file.read()
@@ -30,6 +33,9 @@ if user_input:
     st.session_state['latest_response'] = response_text
     st.session_state['latest_youtube_link'] = youtube_link
 
+    st.session_state['conversation_history'].insert(0,
+                                                    (user_input, response_text, youtube_link))
+
 # Display the latest conversation
 if 'latest_question' in st.session_state and 'latest_response' in st.session_state:
     st.text_area(
@@ -40,3 +46,14 @@ if 'latest_question' in st.session_state and 'latest_response' in st.session_sta
     # Embed the YouTube video if a link is available
     if 'latest_youtube_link' in st.session_state:
         st.video(st.session_state['latest_youtube_link'])
+
+
+# Display existing conversation history
+with st.container():
+    for index, (question, response_text, youtube_link) in enumerate(st.session_state['conversation_history']):
+        st.text_area("You:", value=question, height=100,
+                     disabled=True, key=f"question_{index}")
+        st.text_area("AIcademic:", value=response_text, height=300, max_chars=None,
+                     disabled=True, key=f"response_text_{index}")
+        st.text_area("AIcademic:", value=youtube_link, height=300, max_chars=None,
+                     disabled=True, key=f"youtube_link_{index}")
