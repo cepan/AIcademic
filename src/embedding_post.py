@@ -6,40 +6,34 @@ import os
 import chromadb
 from chromadb.utils import embedding_functions
 import chromadb.utils.embedding_functions as embedding_functions
+from chromadb.utils.embedding_functions import OpenCLIPEmbeddingFunction
+def create_posts_db():
+    DATABASE_URI = 'mysql+mysqlconnector://root:password@localhost/dsci553'
 
+    os.environ["OPENAI_API_KEY"] = "api_key"
+    if os.getenv("OPENAI_API_KEY") is not None:
+        openai.api_key = os.getenv("OPENAI_API_KEY")
+    else:
+        print("OPENAI_API_KEY environment variable not found")
 
-def chunking(DATABASE_URI):
     engine = create_engine(DATABASE_URI)
     query = f"SELECT * FROM posts"
     df = pd.read_sql(query, engine)
+    df.to_csv('piazza.csv')
     text_splitter = CharacterTextSplitter(
         separator='\n', chunk_size=1500, chunk_overlap=0)
     df['Combined'] = df.apply(lambda row: row['Question'] if row['Follow_Up'] is None else row['Question'] + ' ' + row['Follow_Up'], axis=1)
     question = ''.join([''.join(p) for p in df["Combined"]])
     text_ls = text_splitter.split_text(question)
-    return text_ls
 
 
-def storing(fn, text_ls, path):
-    huggingface_ef = embedding_functions.HuggingFaceEmbeddingFunction(
-        api_key="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",
-        model_name="sentence-transformers/all-MiniLM-L6-v2"
-    )
-    openai.api_key = "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"
-    openai_ef = embedding_functions.OpenAIEmbeddingFunction(
-        api_key=openai.api_key,
-        model_name="text-embedding-3-small"
-    )
-    chroma_client = chromadb.PersistentClient(path=path)
-
+    chroma_client = chromadb.PersistentClient(path="DSCI553")
+    openai_ef = OpenCLIPEmbeddingFunction()
     # create embeddings
-    embedding_ls = []
-    id_ls = [fn+str(i) for i in range(len(text_ls))]
-
+    id_ls = ['posts'+str(i) for i in range(len(text_ls))]
     # store embeddings to chroma
-
     collection = chroma_client.get_or_create_collection(
-        name="embeddings_collection", embedding_function=huggingface_ef)
+        name="openclip", embedding_function=openai_ef)
     if '' in text_ls:
         print("empty string")
 
@@ -48,4 +42,3 @@ def storing(fn, text_ls, path):
         ids=id_ls)
 
     print("Successfully stored chunks and embeddings to chroma, chroma did not embed the documents")
-
