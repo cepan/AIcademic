@@ -2,6 +2,7 @@ import streamlit as st
 from openai import OpenAI
 
 import response_post
+from pdfs import pdf_extraction_embedding
 
 st.title('AIcademic')
 
@@ -13,7 +14,7 @@ if uploaded_files:
     for uploaded_file in uploaded_files:
         file = uploaded_file.read()
         # Include your processing logic here, e.g.:
-        # pdf_extraction(file, DATABASE_URI)
+        pdf_extraction_embedding(file)
         # text_ls = chunk_vector.chunking(DATABASE_URI)
         # chunk_vector.storing(uploaded_file.name, text_ls, path)
 

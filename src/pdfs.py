@@ -10,7 +10,7 @@ from chromadb.utils.embedding_functions import OpenCLIPEmbeddingFunction
 # Helper Functions
 #-------------------------------------------------------------------------------
 #Extract PDF information
-def pdf_extraction(file):
+def pdf_extraction_embedding(file):
     text_pdf = ""
     with open(file, 'rb') as f:  # Open the file in binary mode
         stream_data = BytesIO(f.read())  # Read the content of the file and pass it to BytesIO
@@ -21,36 +21,7 @@ def pdf_extraction(file):
         pageObj = pdfReader.pages[page]
         text = pageObj.extract_text()
         text_pdf += text
-    return text_pdf
 
-entire_txt = {} #separate text into chapters by book/slides
-
-#Book PDFS
-for i in range(1, 14):
-    text = pdf_extraction('../data/pdfs/book_pdfs/ch' + str(i) + '.pdf')
-    entire_txt['book_ch_' + str(i)] = text
-
-#PDF Slides
-for i in [1, 2, 3, 6, 7, 8, 11]:
-    if i < 10:
-        text = pdf_extraction('../data/pdfs/pdf_slides/ch0' + str(i) + '.pdf')
-    else:
-        text = pdf_extraction('../data/pdfs/pdf_slides/ch' + str(i) + '.pdf')
-        
-    entire_txt['slides_ch_' + str(i)] = text
-
-for i in [4, 5, 9, 10, 12]:
-    if i < 10:
-        text_1 = pdf_extraction('../data/pdfs/pdf_slides/ch0' + str(i) + '-1.pdf')
-        text_2 = pdf_extraction('../data/pdfs/pdf_slides/ch0' + str(i) + '-2.pdf')
-    else:
-        text_1 = pdf_extraction('../data/pdfs/pdf_slides/ch' + str(i) + '-1.pdf')
-        text_2 = pdf_extraction('../data/pdfs/pdf_slides/ch' + str(i) + '-2.pdf')
-    
-    entire_txt['slides_ch_' + str(i) + '_part1'] = text_1
-    entire_txt['slides_ch_' + str(i) + '_part2'] = text_2
-
-def storing(documents_dic):
     os.environ["OPENAI_API_KEY"] = "openai_api_key"
     if os.getenv("OPENAI_API_KEY") is not None:
         openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -63,18 +34,30 @@ def storing(documents_dic):
     collection = chroma_client.get_or_create_collection(
         name="openclip", embedding_function=openai_ef)
 
-    ids_embedded = set()
-    for material in documents_dic:
-        chunks = []
-        text = documents_dic[material]
-        for i in range(0, len(text), 2000):
-            chunk =  text[i: i + 2000]
-            chunks.append(chunk)
+    chunks = []
+    for i in range(0, len(text), 2000):
+        chunk =  text[i: i + 2000]
+        chunks.append(chunk)
 
-        for i in range(len(chunks)):
-            id = material + str(i)
-            if id not in ids_embedded: #not a duplicate id
-                collection.add(documents = [chunks[i]], ids = [id])
-                ids_embedded.add(id)
+    for i in range(len(chunks)):
+        id = file + str(i)
+        collection.add(documents=[chunks[i]], ids=[id])
 
-storing(entire_txt)
+#Book PDFS
+for i in range(1, 14):
+    text = pdf_extraction_embedding('../data/pdfs/book_pdfs/ch' + str(i) + '.pdf')
+
+#PDF Slides
+for i in [1, 2, 3, 6, 7, 8, 11]:
+    if i < 10:
+        text = pdf_extraction_embedding('../data/pdfs/pdf_slides/ch0' + str(i) + '.pdf')
+    else:
+        text = pdf_extraction_embedding('../data/pdfs/pdf_slides/ch' + str(i) + '.pdf')
+
+for i in [4, 5, 9, 10, 12]:
+    if i < 10:
+        text_1 = pdf_extraction_embedding('../data/pdfs/pdf_slides/ch0' + str(i) + '-1.pdf')
+        text_2 = pdf_extraction_embedding('../data/pdfs/pdf_slides/ch0' + str(i) + '-2.pdf')
+    else:
+        text_1 = pdf_extraction_embedding('../data/pdfs/pdf_slides/ch' + str(i) + '-1.pdf')
+        text_2 = pdf_extraction_embedding('../data/pdfs/pdf_slides/ch' + str(i) + '-2.pdf')
